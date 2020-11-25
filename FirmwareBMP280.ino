@@ -26,14 +26,20 @@ void setup() {
 }
 
 void loop() {
+	/* This block prints the 
+	temperature on the screen */
     Serial.print(F("Temperature = "));
     Serial.print(bmp.readTemperature());
     Serial.println(" *C");
 
+	/* This block prints the 
+	pressure on the screen */
     Serial.print(F("Pressure = "));
     Serial.print(bmp.readPressure());
     Serial.println(" Pa");
 
+	/* This block prints the 
+	altitude on the screen */
     Serial.print(F("Approx altitude = "));
     Serial.print(bmp.readAltitude(1013.25)); /* Adjusted to local forecast! */
     Serial.println(" m");
