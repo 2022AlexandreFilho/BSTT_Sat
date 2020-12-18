@@ -9,8 +9,6 @@ void setup() {
 }
 
 void loop() {
-  Serial.println(value1);
-  Serial.println(value2);
   difference = value2 - value1;
   if (difference > 100) {
     lightning++;
