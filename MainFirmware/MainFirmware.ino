@@ -9,6 +9,11 @@
 
 Adafruit_BMP280 bmp; 
 
+int value1 = analogRead(A0);
+int value2= analogRead(A0);
+int difference = 0;
+int lightning = -1;
+
 void setup() {
   Serial.begin(9600);
   pinMode(A0,INPUT); 
