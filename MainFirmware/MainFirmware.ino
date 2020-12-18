@@ -29,8 +29,8 @@ void setup() {
 
 
 void loop() {
-  lightningCount()
-  readSensors()
+  lightningCount();
+  readSensors();
 }
 
 void lightningCount {
