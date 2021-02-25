@@ -1,0 +1,5 @@
+Next: 
+- Prachute and aerodynamics: Yerin.
+- Algorithm of firing parachute and search about arduino data storage capacity: Rafa.
+- Solid works parachute firing system: Alexandre.
+- Create a graph using javafx, Laura.
