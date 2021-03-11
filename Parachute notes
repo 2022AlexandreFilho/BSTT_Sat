@@ -1,0 +1,27 @@
+Best materials for parachute:
+- Nylon wires
+- rip stop fabric
+- Silk
+
+How to test parachute:
+- Tie it to an egg, and if the egg does not break it is good. 
+
+String attachment to parachute:
+- Make a small hole
+- Tie the string in the hole
+
+Equations:
+- To calculate the area of parachute required to give a descent velocity:
+    - A = (2mg)/(Cdpv^2)
+      - Cd = drag coefficient ≈ 1.75 (The higher drag coefficient produces a lower terminal velocity)
+      - p = density
+      - mg = drag force
+      - v = velocity'
+      - A = cross sectional area
+    - 
+
+Useful websites:
+- http://www.madehow.com/Volume-5/Parachute.html
+- https://www.technicaltextile.net/articles/an-overview-of-parachute-fabric-7170
+- https://www.ijset.net/journal/1952.pdf
+- https://www.stem.org.uk/system/files/elibrary-resources/2019/10/Design%20your%20parachute%20-%20A%20guide%20to%20landing%20your%20CanSat%20safely.pdf
