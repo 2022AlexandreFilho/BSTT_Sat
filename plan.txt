@@ -1,3 +1,6 @@
 Next: 
-- Prachute and aerodynamics: Yerin.
-- Algorithm of firing parachute and search about arduino data storage capacity: Rafa.
+- Laura and Yerin: working on ground station program
+- Rafa and Alexandre: working on parachute firing system
+- Rafa: memory Arduino (eprom and flash)
+- Luisa: can model fusion
+- Mr Oscar: integration of ground control and satellite 
