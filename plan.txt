@@ -4,3 +4,4 @@ Next:
 - Rafa: memory Arduino (eprom and flash)
 - Luisa: can model fusion
 - Mr Oscar: integration of ground control and satellite 
+- Rafa Yin: AI
