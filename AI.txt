@@ -1,1 +1,16 @@
+AI for the Temperature Discrepancy
 
+Functions:
+- Identify the discrepancy [Discrepancy AI]
+- Predict the actual value [Correction AI]
+
+Language:
+- Python
+
+Discrepancy AI:
+It will identify the discrepancy using a dataset produced by the same satellite. We will have to manually find all the discrepancies and store them into an excel sheet. The program will store the variables corresponding to the temperature discrepancy and send it to the Correction AI.
+
+Correction AI:
+The correction AI will use the variables sent from the Discrepancy AI as a testing data set. Though, firstly, the Correction AI will create a model to predict temperature. It will then use this model and insert the variables sent from the Discrepancy AI to predict the actual temperature. 
+
+Maybe it can then overwrite the data collected before sending it to the groundstation program or just send the discrepancy, predicted temperature and data collected separately and acknowledge them in the results. 
