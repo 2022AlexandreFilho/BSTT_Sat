@@ -4,6 +4,7 @@
 
 #define TX_ADDRESS 1                                 // endereço do transmissor
 #define RX_ADDRESS 2                                 // endereço do recept
+#define PinButton 8
 
 RH_ASK driver;                                       // instância RH ASK
 RHReliableDatagram gerente(driver, TX_ADDRESS);      // configurando o gerenciador
@@ -14,9 +15,11 @@ uint8_t buf[RH_ASK_MAX_MESSAGE_LEN];                 // buffer da mensagem
 
 void setup()
 {
+  pinMode(PinButton, INPUT);
   Serial.begin(9600);                                // inicializa console serial 9600 bps
   if (!gerente.init())                               // se a inicialização do gerenciador falhar
-    Serial.println("Falha na inicializacao");        // print na console serial
+    Serial.println("Falha na inicializacao");  
+  // print na console serial
 }
 
 void loop()
@@ -27,5 +30,13 @@ void loop()
   {
     count++;                                                // incrementa contador 
   }
-  delay(500);                                               // atraso 0,5 segundo
+  delay(500); 
+
+  if (digitalRead(PinButton) == HIGH)
+  {
+    const char *msg = "OK";
+    driver.send((uint8_t *)msg, strlen(msg));
+    driver.waitPacketSent();
+    delay(1000);
+  }// atraso 0,5 segundo
 }

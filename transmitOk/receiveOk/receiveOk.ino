@@ -4,17 +4,19 @@
 
 #define TX_ADDRESS 1                                 // endereço do transmissor
 #define RX_ADDRESS 2                                 // endereço do receptor 
+#define ledPin 13 
 
 uint8_t count = 0;                                   // contador
 uint8_t buf[RH_ASK_MAX_MESSAGE_LEN];                 // buffer da mensagem
 uint8_t tamanho;                                     // tamanho da mensagem
-uint8_t from;                                        // endereço de quem transmite
+uint8_t from;  // endereço de quem transmite
 
 RH_ASK driver;                                       // instância RH ASK
 RHReliableDatagram gerente(driver, RX_ADDRESS);      // configurando o gerenciador
 
 void setup()
 {
+  pinMode(ledPin, OUTPUT);
   Serial.begin(9600);                                // inicializa console serial 9600 bps
   if (!gerente.init())                               // se a inicialização do gerenciador falhar
     Serial.println("Falha na inicializacao");        // print na console serial
