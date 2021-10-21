@@ -23,6 +23,7 @@ void setup() {
     Serial.println(F("Could not find a valid BMP280 sensor, check wiring!"));
     while (1);
   }
+  
 
   bmp.setSampling(Adafruit_BMP280::MODE_NORMAL,     
                   Adafruit_BMP280::SAMPLING_X2,     
@@ -38,7 +39,7 @@ void loop() {
   readSensors();
 }
 
-void lightningCount {
+void lightningCount() {
   difference = value2 - value1;
   if (difference > 100) {
     lightning++;
