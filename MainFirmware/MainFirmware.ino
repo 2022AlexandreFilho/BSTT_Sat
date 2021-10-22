@@ -16,7 +16,6 @@ int lightning = -1;
 
 void setup() {
   Serial.begin(9600);
-  pinMode(A0,INPUT); 
   Serial.println(F("BMP280 test"));
 
   if (!bmp.begin()) {
@@ -41,7 +40,7 @@ void loop() {
 
 void lightningCount() {
   difference = value2 - value1;
-  if (difference > 100) {
+  if (difference > 20) {
     lightning++;
     
   }
@@ -70,5 +69,5 @@ void readSensors() {
     Serial.println(" m");
 
     Serial.println();
-    delay(2000);
+
 }
