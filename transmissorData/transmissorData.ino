@@ -13,14 +13,12 @@
 #define RX_ADDRESS 2                                 // endereço do recept
 
 
-//Adafruit_BMP280 bmp; 
+Adafruit_BMP280 bmp; 
 
 RH_ASK driver;                                       // instância RH ASK
 RHReliableDatagram gerente(driver, TX_ADDRESS);      // configurando o gerenciador
 
 uint8_t count = 1;                                   // contador
-uint8_t data[] = "Olá";                // mensagem a ser enviada
-uint8_t buf[RH_ASK_MAX_MESSAGE_LEN];                 // buffer da mensagem
 
 void setup()
 {
@@ -30,33 +28,38 @@ void setup()
 
     Serial.println(F("BMP280 test"));
 
-  //if (!bmp.begin()) {
-    //Serial.println(F("Could not find a valid BMP280 sensor, check wiring!"));
-    //while (1);
- // }
+  if (!bmp.begin()) {
+    Serial.println(F("Could not find a valid BMP280 sensor, check wiring!"));
+    while (1);
+  }
 
- // bmp.setSampling(Adafruit_BMP280::MODE_NORMAL,     
-   //               Adafruit_BMP280::SAMPLING_X2,     
-     //             Adafruit_BMP280::SAMPLING_X16,    
-       //           Adafruit_BMP280::FILTER_X16,     
-         //         Adafruit_BMP280::STANDBY_MS_500); 
+  bmp.setSampling(Adafruit_BMP280::MODE_NORMAL,     
+                  Adafruit_BMP280::SAMPLING_X2,     
+                  Adafruit_BMP280::SAMPLING_X16,    
+                  Adafruit_BMP280::FILTER_X16,     
+                  Adafruit_BMP280::STANDBY_MS_500); 
 }
 
 
 void loop()
 {
-  float t = 78;
-  unsigned char temp = t;
+    String stringTemp = (String)(bmp.readTemperature());
+    char Temp[50];
+    stringTemp.toCharArray(Temp, 50);
 
-   uint8_t data[] = temp;
-  
-  uint8_t buf[RH_ASK_MAX_MESSAGE_LEN]; 
+    Serial.println("stringTemp "+ stringTemp);
+    Serial.println(Temp);
+    Serial.println(bmp.readTemperature());
+    
+    driver.send((uint8_t *)Temp, strlen(Temp));
+    driver.waitPacketSent();
+    delay(50);
 
   Serial.print("Transmitindo mensagem n. ");                // print na console serial
   Serial.println(count);                                    // print do contador 
-  if (!gerente.sendtoWait(data, sizeof(data), RX_ADDRESS))  // se gerenciador enviar mensagem 
+  if (!gerente.sendtoWait(Temp, sizeof(Temp), RX_ADDRESS))  // se gerenciador enviar mensagem 
   {
-    count++;                                                // incrementa contador 
+   count++;                                                // incrementa contador 
   }
   delay(500);                                               // atraso 0,5 segundo
 }
