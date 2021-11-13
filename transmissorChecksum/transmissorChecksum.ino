@@ -45,7 +45,7 @@ void loop()
     rf_driver.send((uint8_t *)Temp, strlen(Temp));
     rf_driver.waitPacketSent();
 
-    delay(120);
+    delay(100);
   
     String stringPressure = (String)(bmp.readPressure());
     char Pressure[10];
@@ -53,7 +53,7 @@ void loop()
     rf_driver.send((uint8_t *)Pressure, strlen(Pressure));
     rf_driver.waitPacketSent();
 
-    delay(120);
+    delay(100);
     
     String stringAlt = (String)(bmp.readAltitude(1018.74)); // Ajusted to local forcast
     char Alt[10];
@@ -61,6 +61,6 @@ void loop()
     rf_driver.send((uint8_t *)Alt, strlen(Alt));
     rf_driver.waitPacketSent();   
 
-    delay(120);
+    delay(100);
 
 }
