@@ -28,7 +28,8 @@ void setup()
   Serial.begin(9600);                                // inicializa console serial 9600 bps
   if (!gerente.init()){                               // se a inicialização do gerenciador falhar
     Serial.println("Falha na inicializacao");
-    gerente.recvfromAck(buf, &tamanho, &from);}
+    gerente.recvfromAck(buf, &tamanho, &from);
+    }
     Serial.print("Initializing...");
     for(int i = 0; i<3; i++){
       while (n < 1000){
