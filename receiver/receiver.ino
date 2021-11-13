@@ -20,24 +20,60 @@ uint8_t from;                                        // endereço de quem transm
 RH_ASK driver;                                       // instância RH ASK
 RHReliableDatagram gerente(driver, RX_ADDRESS);      // configurando o gerenciador
 
+int total = 0;
+float n = 5;
+
 void setup()
 {
   Serial.begin(9600);                                // inicializa console serial 9600 bps
-  if (!gerente.init())                               // se a inicialização do gerenciador falhar
-    Serial.println("Falha na inicializacao");        // print na console serial
+  if (!gerente.init()){                               // se a inicialização do gerenciador falhar
+    Serial.println("Falha na inicializacao");
+    gerente.recvfromAck(buf, &tamanho, &from);}
+    Serial.print("Initializing...");
+    for(int i = 0; i<3; i++){
+      while (n < 1000){
+        if (gerente.available()){
+          tamanho = sizeof(buf);                           // determina o tamanho do buffer
+          if (gerente.recvfromAck(buf, &tamanho, &from)){
+              String m = (String)((char*)buf);
+              n = m.toFloat();
+   
+        }}}
+        }// print na console serial
+      Serial.println("");
 }
+
+
 
 void loop()
 {
   if (gerente.available())                           // se gerenciador estiver ativo
   {
-    tamanho = sizeof(buf);                           // determina o tamanho do buffer
+    tamanho = sizeof(buf);    
     if (gerente.recvfromAck(buf, &tamanho, &from))   // se o gerenciador receber mensagem
     {
-      Serial.print("Recebido de: 0x");               // print na console serial
-      Serial.print(from, HEX);                       // print do endereço do transmissor em Hexadecimal
-      Serial.print(": ");                            // print na console serial
-      Serial.println((char*)buf);                    // print da mensagem recebida
+      if (total%3==0){  
+      Serial.print("Altitude: ");               // print na console serial
+      //Serial.print(from, HEX);                       // print do endereço do transmissor em Hexadecimal
+      Serial.print((char*)buf);   
+      Serial.println(" m ");   
+      }
+
+      else if (total%3==1){
+      Serial.print("Temperature: ");               // print na console serial
+      //Serial.print(from, HEX);                       // print do endereço do transmissor em Hexadecimal
+      Serial.print((char*)buf);   
+      Serial.println("ºC "); 
+      }
+
+      else if (total%3==2){
+      Serial.print("Pressure: ");               // print na console serial
+      //Serial.print(from, HEX);                       // print do endereço do transmissor em Hexadecimal
+      Serial.print((char*)buf);   
+      Serial.println(" b "); 
+      }
+
+      total++;
     }
   }
 }
