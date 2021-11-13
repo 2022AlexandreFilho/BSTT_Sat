@@ -38,30 +38,30 @@ void loop()
     {
 
       if (total%3==0){  
-      Serial.print("Altitude: ");               // print na console serial
-      String string = (String)((char*)buf);
-      string.remove(5);
-      Serial.print(string);   
-      Serial.println(" m ");   
+        Serial.print("Altitude: ");               // print na console serial
+        String string = (String)((char*)buf);
+        string.remove(5);
+        Serial.print(string);   
+        Serial.println(" m ");   
       }
 
       else if (total%3==1){
-      Serial.print("Temperature: ");               // print na console serial                      // print do endereço do transmissor em Hexadecimal
-      String string = (String)((char*)buf);
-      string.remove(5);
-      Serial.print(string); 
-      Serial.println(" °C ");   
+        Serial.print("Temperature: ");               // print na console serial                      // print do endereço do transmissor em Hexadecimal
+        String string = (String)((char*)buf);
+        string.remove(5);
+        Serial.print(string); 
+        Serial.println(" °C ");   
       }
 
       else if (total%3==2){
-      Serial.print("Pressure: ");               // print na console serial
-      String string = (String)((char*)buf);
-      string.remove(10);
-      Serial.print(string);
-      Serial.println(" b "); 
+        Serial.print("Pressure: ");               // print na console serial
+        String string = (String)((char*)buf);
+        string.remove(10);
+        Serial.print(string);
+        Serial.println(" b "); 
       }
 
-      total++;
+      total ++;
       // Message received with valid checksum      
     }
 }
