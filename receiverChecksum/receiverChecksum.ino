@@ -10,6 +10,9 @@ uint8_t buflen;
 int total = 0;
 float n = 5;
 uint8_t buf[RH_ASK_MAX_MESSAGE_LEN];
+String msg1;
+char msg2;
+String msg3;
  
 void setup()
 {
@@ -18,50 +21,52 @@ void setup()
     // Setup Serial Monitor
     Serial.begin(9600);
 
-    for(int i = 0; i<10; i++){
-      while (n < 1000){
-         buflen = sizeof(buf);                           // determina o tamanho do buffer
-          if (rf_driver.recv(buf, &buflen)){
-              String m = (String)((char*)buf);
-              m.remove(10);
-              n = m.toFloat();
-          }}}
+//    for(int i = 0; i<10; i++){
+//      n = 0;
+//      while (n < 1000){
+//         buflen = sizeof(buf);                           // determina o tamanho do buffer
+//          if (rf_driver.recv(buf, &buflen)){
+//              String m = (String)((char*)buf);
+//              m.remove(10);
+//              n = m.toFloat();
+//          }}}
         
 }
  
 void loop()
 {
-    // Set buffer to size of expected message
-    buflen = sizeof(buf);
-    // Check if received packet is correct size
+// Set buffer to size of expected message
+    buflen = sizeof(buf);      // Check if received packet is correct size
     if (rf_driver.recv(buf, &buflen))
     {
 
-      if (total%3==0){  
+      msg1 = (String)((char*)buf);
+      msg2 = msg1.charAt(0);
+      msg1.remove(0,1);
+      
+      if (msg2 == 'C'){  
         Serial.print("Altitude: ");               // print na console serial
-        String string = (String)((char*)buf);
-        string.remove(5);
-        Serial.print(string);   
+        msg1.remove(5);
+        Serial.print(msg1);   
         Serial.println(" m ");   
       }
 
-      else if (total%3==1){
+      else if (msg2 == 'A'){
         Serial.print("Temperature: ");               // print na console serial                      // print do endereço do transmissor em Hexadecimal
-        String string = (String)((char*)buf);
-        string.remove(5);
-        Serial.print(string); 
+        msg1.remove(5);
+        Serial.print(msg1); 
         Serial.println(" °C ");   
       }
 
-      else if (total%3==2){
+      else if (msg2 == 'B'){
         Serial.print("Pressure: ");               // print na console serial
-        String string = (String)((char*)buf);
-        string.remove(10);
-        Serial.print(string);
+        msg1.remove(10);
+        Serial.print(msg1);
         Serial.println(" b "); 
       }
 
       total ++;
+      }
       // Message received with valid checksum      
-    }
+    
 }
