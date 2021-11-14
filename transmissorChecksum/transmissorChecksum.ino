@@ -39,28 +39,32 @@ void setup()
  
 void loop()
 {
+    delay(270);
+    
     String stringTemp = (String)(bmp.readTemperature());
-    char Temp[10];
+    stringTemp = "A" + stringTemp;
+    char Temp[8];
     stringTemp.toCharArray(Temp, 10);
     rf_driver.send((uint8_t *)Temp, strlen(Temp));
     rf_driver.waitPacketSent();
 
-    delay(100);
+    delay(170);
   
     String stringPressure = (String)(bmp.readPressure());
-    char Pressure[10];
+    stringPressure = "B" + stringPressure;
+    char Pressure[8];
     stringPressure.toCharArray(Pressure, 10); 
     rf_driver.send((uint8_t *)Pressure, strlen(Pressure));
     rf_driver.waitPacketSent();
 
-    delay(100);
+    delay(170);
     
-    String stringAlt = (String)(bmp.readAltitude(1018.74)); // Ajusted to local forcast
-    char Alt[10];
+    String stringAlt = (String)(bmp.readAltitude(1018.74));
+    stringAlt = "C" + stringAlt;// Ajusted to local forcast
+    char Alt[8];
     stringAlt.toCharArray(Alt, 10);
     rf_driver.send((uint8_t *)Alt, strlen(Alt));
     rf_driver.waitPacketSent();   
 
-    delay(100);
 
 }
