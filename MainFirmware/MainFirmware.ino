@@ -1,6 +1,8 @@
-#include <Wire.h>
-#include <SPI.h>
 #include <Adafruit_BMP280.h>
+
+#include <SPI.h>
+
+#include <Wire.h>
 
 #define BMP_SCK  (13)
 #define BMP_MISO (12)
@@ -20,7 +22,7 @@ void setup() {
 
   if (!bmp.begin()) {
     Serial.println(F("Could not find a valid BMP280 sensor, check wiring!"));
-    while (1);
+    //while (1);
   }
   
 
@@ -34,6 +36,7 @@ void setup() {
 
 
 void loop() {
+  Serial.println("Running");
   lightningCount();
   readSensors();
 }
